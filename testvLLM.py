@@ -10,8 +10,8 @@ def count_tokens(tokenizer, text, add_special_tokens=False):
 
 def main():
     parser = argparse.ArgumentParser(description="Generate LLM outputs per tag from a zip of prompts.")
-    parser.add_argument("--zip_path", type=str, default="/root/TestCCO/prompts_per_task.zip", help="Path to the zip containing the JSON prompts")
-    parser.add_argument("--json_name", type=str, default="prompts_per_task.json", help="Name of the JSON file inside the zip")
+    parser.add_argument("--zip_path", type=str, default="/root/TestCCO/prompts_per_task_v06.zip", help="Path to the zip containing the JSON prompts")
+    parser.add_argument("--json_name", type=str, default="prompts_per_task_v06.json", help="Name of the JSON file inside the zip")
     parser.add_argument("--start_tag", type=int, default=0, help="Index of the first tag to process (inclusive)")
     parser.add_argument("--end_tag", type=int, default=None, help="Index of the last tag to process (exclusive)")
     parser.add_argument("--tags", type=str, nargs="*", help="Optional list of tag names to process (overrides start/end indices)")
