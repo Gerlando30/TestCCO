@@ -1,3 +1,10 @@
+import os
+# Imposta cache locali dentro il progetto
+os.environ["HF_HOME"] = "/workspace/gerlando/.cache_hf"
+os.environ["TRANSFORMERS_CACHE"] = os.environ["HF_HOME"]
+os.environ["XDG_CACHE_HOME"] = os.environ["HF_HOME"]
+os.environ["UV_PYTHON_CACHE"] = "/workspace/gerlando/.cache_uv"
+
 import argparse
 from transformers import AutoTokenizer
 from vllm import LLM, SamplingParams
@@ -10,12 +17,12 @@ def count_tokens(tokenizer, text, add_special_tokens=False):
 
 def main():
     parser = argparse.ArgumentParser(description="Generate LLM outputs per tag from a zip of prompts.")
-    parser.add_argument("--zip_path", type=str, default="/root/TestCCO/prompts_per_task_v06.zip", help="Path to the zip containing the JSON prompts")
+    parser.add_argument("--zip_path", type=str, default="/workspace/gerlando/TestCCO/prompts_per_task_v06.zip", help="Path to the zip containing the JSON prompts")
     parser.add_argument("--json_name", type=str, default="prompts_per_task_v06.json", help="Name of the JSON file inside the zip")
     parser.add_argument("--start_tag", type=int, default=0, help="Index of the first tag to process (inclusive)")
     parser.add_argument("--end_tag", type=int, default=None, help="Index of the last tag to process (exclusive)")
     parser.add_argument("--tags", type=str, nargs="*", help="Optional list of tag names to process (overrides start/end indices)")
-    parser.add_argument("--output_dir", type=str, default="/root/TestCCO", help="Directory to save output JSON files")
+    parser.add_argument("--output_dir", type=str, default="/workspace/gerlando/TestCCO/results", help="Directory to save output JSON files")
     args = parser.parse_args()
 
     # Initialize model and tokenizer
